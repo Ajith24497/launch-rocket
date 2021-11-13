@@ -35,12 +35,13 @@ function Home() {
   }
 
   return (
-    <div className="home_body">
+    <div id="home" className="home_body">
       <Container>
         <Row>
           <Col>
             <div className="text_area">
               <Image className="text_img" src={text_svg} />
+              <Button href="#section1">Start</Button>
             </div>
           </Col>
           <Col>
