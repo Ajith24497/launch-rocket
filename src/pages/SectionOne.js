@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../contexts/context";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import "../css/sectionleft.css";
 
@@ -6,6 +7,7 @@ function Sectionone() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isCorrect, setIsCorrect] = useState("");
   const [isGameOver, setIsGameOver] = useState(false);
+  const { updateAnimProgress, updatePlayState } = useContext(Context);
 
   const changeHandler = (e) => {
     setSelectedOption(e.target.value);
@@ -18,6 +20,11 @@ function Sectionone() {
         ? setIsCorrect("true")
         : setIsCorrect("false");
     }
+  };
+
+  const nextClickHandler = () => {
+    updateAnimProgress(25);
+    updatePlayState(true);
   };
 
   return (
@@ -64,7 +71,9 @@ function Sectionone() {
                 {isCorrect === "true" ? (
                   <div>
                     <h3>You have got the Part</h3>
-                    <Button href="#section2">Move Next!</Button>
+                    <Button href="#section2" onClick={nextClickHandler}>
+                      Move Next!
+                    </Button>
                   </div>
                 ) : isCorrect === "false" ? (
                   <h3>Oops wrong Answer!</h3>
